@@ -67,6 +67,3 @@ $ find -name '*.cpp' -o -name '*.h' -o -name '*.hpp' | xargs clang-format-6.0 -s
 $ ament_cpplint
 $ ament_uncrustify
 ```
-
-## Doxygen
-TODO

@@ -38,9 +38,9 @@ $ cd collaboration && rm -r sample_code && bash setup_pc/setup_pc.sh
 ### Integrated Development Environment (IDE)
 [**Visual Studio Code**](https://code.visualstudio.com/) (VSCode) is recommended as it provides many intutive and versatile features you need when writing clean code.
 
-**Set up your own IDE environment** using `settings.json` file. Add this [setings.json file](setup_pc/ros/settings.json) and [c_cpp_properties.json](setup_pc/ros/c_cpp_properties.json) to the following path. If you already have your own peferred custom configuration, consider start using the common setting or proactive suggest alternatives for collaboration purposes.
-- `~/.vscode/`: for applying to all files in the system.
-- `~/catkin_ws/.vscode/`: for applying to only the files in your workspace.
+**Set up your own IDE environment** by adding [setings.json](setup_pc/ros/settings.json) and [c_cpp_properties.json](/setup_pc/ros/c_cpp_properties.json) files to the following path. If you already have your own peferred custom configuration, consider start using the common setting or proactively suggest alternatives to the [lab software engineer](https://github.com/JaehyunShim).
+- `~/.vscode/`: to apply to all files in the system.
+- `~/catkin_ws/.vscode/`: to apply to only the files in your workspace.
 
 **VSCode Extensions** are recommended to install as they provide many useful features for development such as code browsing or snippets. The minimum recommended extensions are listed below.
 
@@ -70,12 +70,12 @@ TODO: GDB with VSCode
 ### Terminal Emulator
 [**Terminator**](https://gnometerminator.blogspot.com/p/introduction.html) is recommended to use as it supports splitting terminals that the default Ubuntu terminal application does not.
 
-**Set up your Terminaor environment** by adding this [config](/setup_pc/terminator/config) file to `~/.config/terminator` unless you have your own peferred custom configuration file.
+**Set up your Terminaor environment** by adding this [config](setup_pc/terminator/config) file to `~/.config/terminator/` directory unless you have your own peferred custom configuration file.
 
 ### Robot Operating System (ROS)
 [**ROS Noetic**](http://wiki.ros.org/noetic/Installation/Ubuntu) & [**ROS2 Foxy**](https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html) on Ubuntu 20.04 is recommended. However, as written above in [Operating System (OS)](#operating-system-os), you will have to install older versions depending on the robot platform you use. Find the [lab software engineer](https://github.com/JaehyunShim) and discuss it.
 
-**Set up your ROS environment** by adding the lines from this [bashrc](/setup_pc/bashrc/bashrc) file to the `~/.bashrc` unless you have your own peferred custom configuration file.
+**Set up your ROS environment** by adding the lines from this [bashrc](setup_pc/bashrc/bashrc) file to the `~/.bashrc` unless you have your own peferred custom configuration file.
 
 ## Control Pipeline
 In the slmc lab, there are many ongoing projects and the following are the current **control pipelines** for them. Find the [lab manager](https://github.com/VladimirIvan) and discuss to **know how your work will position in the whole control pipeline** as well as **avoid reinventing the wheel**.

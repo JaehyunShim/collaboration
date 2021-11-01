@@ -37,6 +37,3 @@ $ autopep8 --in-place --recursive .
 $ ament_pep257
 $ ament_flake8
 ```
-
-## Doxygen
-TODO
