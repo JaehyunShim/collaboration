@@ -26,24 +26,18 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef SIMPLE_SERVICE_CPP__SIMPLE_CLIENT_H_
-#define SIMPLE_SERVICE_CPP__SIMPLE_CLIENT_H_
+#include "simple_topic_cpp/simple_sub.h"
 
-#include <ros/ros.h>
-#include <std_srvs/SetBool.h>
-
-namespace simple_service_cpp
+namespace simple_topic_cpp
 {
-class SimpleClient
+SimpleSub::SimpleSub() : nh_(""), priv_nh_("~")
 {
-public:
-  SimpleClient();
+  sub_ = nh_.subscribe("chatter", 10, &SimpleSub::sub_callback, this);
+}
 
-private:
-  ros::NodeHandle nh_;
-  ros::NodeHandle priv_nh_;
-
-  ros::ServiceClient client_;
-};
-}  // namespace simple_service_cpp
-#endif  // SIMPLE_SERVICE_CPP__SIMPLE_CLIENT_H_
+void SimpleSub::sub_callback(const std_msgs::String::ConstPtr msg)
+{
+  ROS_INFO("Received message");
+  ROS_INFO("Data: %s", msg->data.c_str());
+}
+}  // namespace simple_topic_cpp

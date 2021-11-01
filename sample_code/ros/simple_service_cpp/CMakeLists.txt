@@ -22,11 +22,11 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(simple_server src/main_server.cpp)
+add_executable(simple_server src/simple_server.cpp src/main_server.cpp)
 add_dependencies(simple_server ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(simple_server ${catkin_LIBRARIES})
 
-add_executable(simple_client src/main_client.cpp)
+add_executable(simple_client src/simple_client.cpp src/main_client.cpp)
 add_dependencies(simple_client ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(simple_client ${catkin_LIBRARIES})
 

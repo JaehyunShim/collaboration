@@ -37,22 +37,14 @@ namespace simple_topic_cpp
 class SimpleSub
 {
 public:
-  SimpleSub() : nh_(""), priv_nh_("~")
-  {
-    sub_ = nh_.subscribe("chatter", 10, &SimpleSub::sub_callback, this);
-  }
+  SimpleSub();
 
 private:
   ros::NodeHandle nh_;
   ros::NodeHandle priv_nh_;
 
   ros::Subscriber sub_;
-
-  void sub_callback(const std_msgs::String::ConstPtr msg)
-  {
-    ROS_INFO("Received message");
-    ROS_INFO("Data: %s", msg->data.c_str());
-  }
+  void sub_callback(const std_msgs::String::ConstPtr msg);
 };
 }  // namespace simple_topic_cpp
 #endif  // SIMPLE_TOPIC_CPP__SIMPLE_SUB_H_

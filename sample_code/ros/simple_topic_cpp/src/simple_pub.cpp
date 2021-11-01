@@ -26,24 +26,23 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef SIMPLE_SERVICE_CPP__SIMPLE_CLIENT_H_
-#define SIMPLE_SERVICE_CPP__SIMPLE_CLIENT_H_
+#include "simple_topic_cpp/simple_pub.h"
 
-#include <ros/ros.h>
-#include <std_srvs/SetBool.h>
-
-namespace simple_service_cpp
+namespace simple_topic_cpp
 {
-class SimpleClient
+SimplePub::SimplePub() : nh_(""), priv_nh_("~")
 {
-public:
-  SimpleClient();
+  pub_ = nh_.advertise<std_msgs::String>("chatter", 10);
 
-private:
-  ros::NodeHandle nh_;
-  ros::NodeHandle priv_nh_;
+  timer_ = nh_.createTimer(ros::Duration(1.0), &SimplePub::timer_callback, this);
+}
 
-  ros::ServiceClient client_;
-};
-}  // namespace simple_service_cpp
-#endif  // SIMPLE_SERVICE_CPP__SIMPLE_CLIENT_H_
+void SimplePub::timer_callback(const ros::TimerEvent& event)
+{
+  auto msg = std_msgs::String();
+  msg.data = "Hello world from Korea!";
+  ROS_INFO("Publishing message");
+  ROS_INFO("Data: %s", msg.data.c_str());
+  pub_.publish(msg);
+}
+}  // namespace simple_topic_cpp

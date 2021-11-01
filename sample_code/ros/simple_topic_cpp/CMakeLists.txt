@@ -22,11 +22,11 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(simple_pub src/main_pub.cpp)
+add_executable(simple_pub src/simple_pub.cpp src/main_pub.cpp)
 add_dependencies(simple_pub ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(simple_pub ${catkin_LIBRARIES})
 
-add_executable(simple_sub src/main_sub.cpp)
+add_executable(simple_sub src/simple_sub.cpp src/main_sub.cpp)
 add_dependencies(simple_sub ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(simple_sub ${catkin_LIBRARIES})
 

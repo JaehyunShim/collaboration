@@ -26,24 +26,23 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef SIMPLE_SERVICE_CPP__SIMPLE_CLIENT_H_
-#define SIMPLE_SERVICE_CPP__SIMPLE_CLIENT_H_
+#include "simple_param_cpp/simple_param.h"
 
-#include <ros/ros.h>
-#include <std_srvs/SetBool.h>
-
-namespace simple_service_cpp
+namespace simple_param_cpp
 {
-class SimpleClient
+SimpleParam::SimpleParam() : nh_(""), priv_nh_("~")
 {
-public:
-  SimpleClient();
+  timer_ = nh_.createTimer(ros::Duration(1.0), &SimpleParam::timer_callback, this);
+}
 
-private:
-  ros::NodeHandle nh_;
-  ros::NodeHandle priv_nh_;
+void SimpleParam::timer_callback(const ros::TimerEvent& event)
+{
+  auto robot_name = priv_nh_.param<std::string>("robot_name", "SimpleBot");
+  auto robot_mass = priv_nh_.param<double>("robot_mass", 1.0);
+  auto robot_number = priv_nh_.param<int>("robot_number", 3);
 
-  ros::ServiceClient client_;
-};
-}  // namespace simple_service_cpp
-#endif  // SIMPLE_SERVICE_CPP__SIMPLE_CLIENT_H_
+  ROS_INFO("robot_name: %s", robot_name.c_str());
+  ROS_INFO("robot_mass: %lf", robot_mass);
+  ROS_INFO("robot_number: %d", robot_number);
+}
+}  // namespace simple_param_cpp

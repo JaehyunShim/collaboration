@@ -26,24 +26,23 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef SIMPLE_SERVICE_CPP__SIMPLE_CLIENT_H_
-#define SIMPLE_SERVICE_CPP__SIMPLE_CLIENT_H_
-
-#include <ros/ros.h>
-#include <std_srvs/SetBool.h>
+#include "simple_service_cpp/simple_server.h"
 
 namespace simple_service_cpp
 {
-class SimpleClient
+SimpleServer::SimpleServer() : nh_(""), priv_nh_("~")
 {
-public:
-  SimpleClient();
+  server_ = nh_.advertiseService("robot_switch", &SimpleServer::server_callback, this);
+}
 
-private:
-  ros::NodeHandle nh_;
-  ros::NodeHandle priv_nh_;
-
-  ros::ServiceClient client_;
-};
+bool SimpleServer::server_callback(
+  std_srvs::SetBool::Request& request,
+  std_srvs::SetBool::Response& response)
+{
+  ROS_INFO("Received request");
+  ROS_INFO("Onoff: %s", request.data ? "true" : "false");
+  response.success = true;
+  response.message = request.data ? "Turned on" : "Turned off";
+  return true;
+}
 }  // namespace simple_service_cpp
-#endif  // SIMPLE_SERVICE_CPP__SIMPLE_CLIENT_H_

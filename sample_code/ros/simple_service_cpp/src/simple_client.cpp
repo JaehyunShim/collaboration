@@ -26,24 +26,38 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef SIMPLE_SERVICE_CPP__SIMPLE_CLIENT_H_
-#define SIMPLE_SERVICE_CPP__SIMPLE_CLIENT_H_
-
-#include <ros/ros.h>
-#include <std_srvs/SetBool.h>
+#include "simple_service_cpp/simple_client.h"
 
 namespace simple_service_cpp
 {
-class SimpleClient
+SimpleClient::SimpleClient() : nh_(""), priv_nh_("~")
 {
-public:
-  SimpleClient();
+  client_ = nh_.serviceClient<std_srvs::SetBool>("robot_switch");
 
-private:
-  ros::NodeHandle nh_;
-  ros::NodeHandle priv_nh_;
+  while (!client_.waitForExistence(ros::Duration(1.0)))
+  {
+    if (!ros::ok())
+    {
+      ROS_ERROR("Interruped while waiting for the server.");
+      return;
+    }
+    ROS_INFO("Server not available, waiting again...");
+  }
 
-  ros::ServiceClient client_;
-};
+  auto srv = std_srvs::SetBool();
+  srv.request.data = false;
+  ROS_INFO("Sending request");
+  ROS_INFO("Onoff: %s", srv.request.data ? "true" : "false");
+  if (client_.call(srv))
+  {
+    auto response = srv.response;
+    ROS_INFO("Received response");
+    ROS_INFO("Success: %s", response.success ? "true" : "false");
+    ROS_INFO("Message: %s", response.message.c_str());
+  }
+  else
+  {
+    ROS_ERROR("Failed to call service");
+  }
+}
 }  // namespace simple_service_cpp
-#endif  // SIMPLE_SERVICE_CPP__SIMPLE_CLIENT_H_

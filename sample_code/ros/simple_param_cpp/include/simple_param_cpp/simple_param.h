@@ -36,27 +36,14 @@ namespace simple_param_cpp
 class SimpleParam
 {
 public:
-  SimpleParam() : nh_(""), priv_nh_("~")
-  {
-    timer_ = nh_.createTimer(ros::Duration(1.0), &SimpleParam::timer_callback, this);
-  }
+  SimpleParam();
 
 private:
   ros::NodeHandle nh_;
   ros::NodeHandle priv_nh_;
 
   ros::Timer timer_;
-
-  void timer_callback(const ros::TimerEvent& event)
-  {
-    auto robot_name = priv_nh_.param<std::string>("robot_name", "SimpleBot");
-    auto robot_mass = priv_nh_.param<double>("robot_mass", 1.0);
-    auto robot_number = priv_nh_.param<int>("robot_number", 3);
-
-    ROS_INFO("robot_name: %s", robot_name.c_str());
-    ROS_INFO("robot_mass: %lf", robot_mass);
-    ROS_INFO("robot_number: %d", robot_number);
-  }
+  void timer_callback(const ros::TimerEvent& event);
 };
 }  // namespace simple_param_cpp
 #endif  // SIMPLE_PARAM_CPP__SIMPLE_PARAM_H_

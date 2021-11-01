@@ -21,7 +21,7 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(simple_param src/main_param.cpp)
+add_executable(simple_param src/simple_param.cpp src/main_param.cpp)
 add_dependencies(simple_param ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(simple_param ${catkin_LIBRARIES})
 

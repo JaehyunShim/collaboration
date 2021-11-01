@@ -37,25 +37,14 @@ namespace simple_service_cpp
 class SimpleServer
 {
 public:
-  SimpleServer() : nh_(""), priv_nh_("~")
-  {
-    server_ = nh_.advertiseService("robot_switch", &SimpleServer::server_callback, this);
-  }
+  SimpleServer();
 
 private:
   ros::NodeHandle nh_;
   ros::NodeHandle priv_nh_;
 
   ros::ServiceServer server_;
-
-  bool server_callback(std_srvs::SetBool::Request& request, std_srvs::SetBool::Response& response)
-  {
-    ROS_INFO("Received request");
-    ROS_INFO("Onoff: %s", request.data ? "true" : "false");
-    response.success = true;
-    response.message = request.data ? "Turned on" : "Turned off";
-    return true;
-  }
+  bool server_callback(std_srvs::SetBool::Request& request, std_srvs::SetBool::Response& response);
 };
 }  // namespace simple_service_cpp
 #endif  // SIMPLE_SERVICE_CPP__SIMPLE_SERVER_H_

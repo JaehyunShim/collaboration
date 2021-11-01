@@ -37,29 +37,15 @@ namespace simple_topic_cpp
 class SimplePub
 {
 public:
-  SimplePub() : nh_(""), priv_nh_("~")
-  {
-    pub_ = nh_.advertise<std_msgs::String>("chatter", 10);
-
-    timer_ = nh_.createTimer(ros::Duration(1.0), &SimplePub::timer_callback, this);
-  }
+  SimplePub();
 
 private:
   ros::NodeHandle nh_;
   ros::NodeHandle priv_nh_;
 
   ros::Publisher pub_;
-
   ros::Timer timer_;
-
-  void timer_callback(const ros::TimerEvent& event)
-  {
-    auto msg = std_msgs::String();
-    msg.data = "Hello world from Korea!";
-    ROS_INFO("Publishing message");
-    ROS_INFO("Data: %s", msg.data.c_str());
-    pub_.publish(msg);
-  }
+  void timer_callback(const ros::TimerEvent& event);
 };
 }  // namespace simple_topic_cpp
 #endif  // SIMPLE_TOPIC_CPP__SIMPLE_PUB_H_
