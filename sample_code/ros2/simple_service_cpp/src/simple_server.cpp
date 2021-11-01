@@ -26,11 +26,14 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+#include <memory>
+
 #include "simple_service_cpp/simple_server.hpp"
 
 namespace simple_service_cpp
 {
-SimpleServer::SimpleServer() : Node("simple_server")
+SimpleServer::SimpleServer()
+: Node("simple_server")
 {
   using std::placeholders::_1;
   using std::placeholders::_2;

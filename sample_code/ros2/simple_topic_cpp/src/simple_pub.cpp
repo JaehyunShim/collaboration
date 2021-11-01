@@ -30,7 +30,8 @@
 
 namespace simple_topic_cpp
 {
-SimplePub::SimplePub() : Node("simple_pub")
+SimplePub::SimplePub()
+: Node("simple_pub")
 {
   pub_ = this->create_publisher<std_msgs::msg::String>("chatter", 10);
 

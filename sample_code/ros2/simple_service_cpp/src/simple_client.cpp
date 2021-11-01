@@ -26,11 +26,14 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+#include <memory>
+
 #include "simple_service_cpp/simple_client.hpp"
 
 namespace simple_service_cpp
 {
-SimpleClient::SimpleClient() : Node("simple_client")
+SimpleClient::SimpleClient()
+: Node("simple_client")
 {
   client_ = this->create_client<std_srvs::srv::SetBool>("robot_switch");
 
@@ -58,4 +61,4 @@ void SimpleClient::client_response_callback(ServiceResponseFuture future)
   RCLCPP_INFO(this->get_logger(), "Success: %s", response->success ? "true" : "false");
   RCLCPP_INFO(this->get_logger(), "Message: %s", response->message.c_str());
 }
-}  // namespace /* namespace_name */
+}  // namespace simple_service_cpp

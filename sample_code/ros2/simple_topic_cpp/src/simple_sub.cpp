@@ -30,7 +30,8 @@
 
 namespace simple_topic_cpp
 {
-SimpleSub::SimpleSub() : Node("sipmle_sub")
+SimpleSub::SimpleSub()
+: Node("sipmle_sub")
 {
   using std::placeholders::_1;
   sub_ = this->create_subscription<std_msgs::msg::String>(

@@ -26,11 +26,14 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+#include <string>
+
 #include "simple_param_cpp/simple_param.hpp"
 
 namespace simple_param_cpp
 {
-SimpleParam::SimpleParam() : Node("simple_param")
+SimpleParam::SimpleParam()
+: Node("simple_param")
 {
   this->declare_parameter<std::string>("robot_name", "SimpleBot");
   this->declare_parameter<double>("robot_mass", 1.0);
