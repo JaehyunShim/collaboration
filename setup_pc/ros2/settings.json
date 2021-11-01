@@ -1,0 +1,29 @@
+{
+  // Apply coding style
+  "editor.detectIndentation": false,
+  "editor.tabSize": 2,
+  "[python]": {
+    "editor.tabSize": 4
+  },
+  "editor.rulers": [
+    100
+  ],
+  "editor.renderWhitespace": "boundary",
+
+  // Clean up unnecessary whitespaces and lines
+  "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true,
+  "files.insertFinalNewline": true,
+
+  // Set up VSCode feature configuration
+  "editor.mouseWheelZoom": true,
+  "terminal.integrated.scrollback": 100000,
+
+  // Hide folders other than 'src' in the workspace
+  "files.exclude": {
+    "build": true,
+    "install": true,
+    "log": true,
+    "backup": true,
+  },
+}

@@ -1,0 +1,9 @@
+<launch>
+  <node pkg="simple_topic_py" type="main_pub.py" name="simple_pub" output="screen">
+    <remap from="chatter" to="new_chatter"/>
+  </node>
+
+  <node pkg="simple_topic_py" type="main_sub.py" name="simple_sub" output="screen">
+    <remap from="chatter" to="new_chatter"/>
+  </node>
+</launch>

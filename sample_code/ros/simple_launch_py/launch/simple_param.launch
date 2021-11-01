@@ -1,0 +1,9 @@
+<launch>
+  <!-- <node pkg="simple_param_py" type="main_param.py" name="simple_param" output="screen">
+    <param name="robot_mass" value="4.0"/>
+  </node> -->
+
+  <rosparam command="load" file="$(find simple_launch_py)/config/param.yaml"/>
+  <node pkg="simple_param_py" type="main_param.py" name="simple_param" output="screen">
+  </node>
+</launch>

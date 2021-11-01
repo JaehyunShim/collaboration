@@ -1,0 +1,5 @@
+repositories:
+  collaboration:
+    type: git
+    url: https://github.com/JaehyunShim/collaboration
+    version: master

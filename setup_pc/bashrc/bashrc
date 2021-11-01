@@ -1,0 +1,63 @@
+# ROS version
+ROS_VERSION=1
+
+# ROS1 commands
+if [ ${ROS_VERSION} -eq 1 ]; then
+  alias cw='cd ~/catkin_ws'
+  alias cs='cd ~/catkin_ws/src'
+  alias cm='cd ~/catkin_ws && catkin_make && rospack profile && source ~/catkin_ws/devel/setup.bash'
+  alias cb='cd ~/catkin_ws && catkin build && rospack profile && source ~/catkin_ws/devel/setup.bash'
+  alias ct='cd ~/catkin_ws && catkin_make run_tests roslint && rospack profile && source ~/catkin_ws/devel/setup.bash'
+  alias ci='cd ~/catkin_ws && rosdep install --from-paths src --ignore-src --rosdistro noetic -r -y'
+  alias cr='cd ~/catkin_ws && rm -rf build devel logs'
+  alias pe="printenv | grep ROS"
+  alias ka='killall -9'
+  alias kg='killall -9 gazebo & killall -9 gzserver  & killall -9 gzclient'
+  alias rt='rostopic list'
+  alias rn='rosnode list'
+  alias rosreinstall='sudo apt remove ros-noetic-* -y && sudo apt autoremove -y && sudo apt install ros-noetic-desktop-full -y'
+  source /opt/ros/noetic/setup.bash
+  source ~/catkin_ws/devel/setup.bash
+  export ROS_MASTER_URI=http://localhost:11311
+  export ROS_HOSTNAME=localhost
+
+# ROS2 commands
+elif [ ${ROS_VERSION} -eq 2 ]; then
+  alias cw='cd ~/colcon_ws'
+  alias cs='cd ~/colcon_ws/src'
+  alias cb='cd ~/colcon_ws && colcon build --symlink-install && source ~/colcon_ws/install/local_setup.bash'
+  alias ct='cd ~/colcon_ws && colcon test'
+  alias ctr='cd ~/colcon_ws && colcon test-result --verbose'
+  alias ci='cd ~/colcon_ws && rosdep install --from-paths src --ignore-src --rosdistro foxy -r -y'
+  alias cr='cd ~/colcon_ws && rm -rf build install log'
+  alias pe="printenv | grep ROS"
+  alias ka='killall -9'
+  alias kg='killall -9 gazebo & killall -9 gzserver  & killall -9 gzclient'
+  alias ac='ament_cpplint'
+  alias af='ament_flake8'
+  alias rt='ros2 topic list'
+  alias rn='ros2 node list'
+  alias ros2reinstall='sudo apt remove ros-foxy-* -y && sudo apt autoremove -y && sudo apt install ros-foxy-desktop -y'
+  source /opt/ros/foxy/setup.bash
+  source ~/colcon_ws/install/local_setup.bash
+
+  # ROS2 Domain ID (0 ~ 232)
+  export ROS_DOMAIN_ID=0 # Default
+  #export ROS_DOMAIN_ID=1 # Developer
+  #export ROS_DOMAIN_ID=2 # Developer
+  #export ROS_DOMAIN_ID=3 # Developer
+  #export ROS_DOMAIN_ID=30 # Remote Robot
+
+  # Set rmw implementation
+  export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+  #export RMW_IMPLEMENTATION=rmw_connext_cpp
+  #export RMW_IMPLEMENTATION=rmw_opensplice_cpp
+  #export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+
+  # Set the alias commands for test
+  alias testpub='ros2 run demo_nodes_cpp talker'
+  alias testsub='ros2 run demo_nodes_cpp listener'
+  alias testpubimg='ros2 run image_tools cam2image'
+  alias testsubimg='ros2 run image_tools showimage'
+
+fi

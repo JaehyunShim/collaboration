@@ -1,0 +1,11 @@
+
+<launch>
+  <!-- <node pkg="simple_param_py" exec="simple_param" name="simple_param" output="screen">
+    <param name="robot_mass" value="4.0"/>
+  </node> -->
+
+  <node pkg="simple_param_py" exec="simple_param" name="simple_param" output="screen">
+    <!-- Note the config file location -->
+    <param from="$(find-pkg-share simple_launch_py)/param.yaml"/>
+  </node>
+</launch>
