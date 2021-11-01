@@ -35,8 +35,8 @@ catkin_ws (colcon_ws in ROS2)
 TODO: ROS2
 
 ## Sample Code
-- [ROS](https://github.com/JaehyunShim/collaboration/tree/master/sample_code/ROS)
-- [ROS2](https://github.com/JaehyunShim/collaboration/tree/master/sample_code/ROS2)
+- [ROS](https://github.com/JaehyunShim/collaboration/tree/master/sample_code/ros)
+- [ROS2](https://github.com/JaehyunShim/collaboration/tree/master/sample_code/ros2)
 
 TODO: Write cpp files for the sample code
 TODO: Apply linter
