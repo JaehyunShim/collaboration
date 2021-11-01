@@ -21,11 +21,11 @@ find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 
 # Build
-add_executable(simple_pub src/main_pub.cpp)
+add_executable(simple_pub src/simple_pub.cpp src/main_pub.cpp)
 target_include_directories(simple_pub PRIVATE include)
 ament_target_dependencies(simple_pub rclcpp std_msgs)
 
-add_executable(simple_sub src/main_sub.cpp)
+add_executable(simple_sub src/simple_sub.cpp src/main_sub.cpp)
 target_include_directories(simple_sub PRIVATE include)
 ament_target_dependencies(simple_sub rclcpp std_msgs)
 

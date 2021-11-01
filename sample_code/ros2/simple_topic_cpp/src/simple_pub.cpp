@@ -26,22 +26,25 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef SIMPLE_TOPIC_CPP__SIMPLE_SUB_HPP_
-#define SIMPLE_TOPIC_CPP__SIMPLE_SUB_HPP_
-
-#include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/string.hpp"
+#include "simple_topic_cpp/simple_pub.hpp"
 
 namespace simple_topic_cpp
 {
-class SimpleSub : public rclcpp::Node
+SimplePub::SimplePub() : Node("simple_pub")
 {
-public:
-  SimpleSub();
+  pub_ = this->create_publisher<std_msgs::msg::String>("chatter", 10);
 
-private:
-  rclcpp::Subscription<std_msgs::msg::String>::SharedPtr sub_;
-  void sub_callback(const std_msgs::msg::String::SharedPtr msg);
-};
+  timer_ = this->create_wall_timer(
+    std::chrono::seconds(1),
+    std::bind(&SimplePub::timer_callback, this));
+}
+
+void SimplePub::timer_callback()
+{
+  auto msg = std_msgs::msg::String();
+  msg.data = "Hello world from Korea!";
+  RCLCPP_INFO(this->get_logger(), "Publishing message");
+  RCLCPP_INFO(this->get_logger(), "Data: %s", msg.data.c_str());
+  pub_->publish(msg);
+}
 }  // namespace simple_topic_cpp
-#endif  // SIMPLE_TOPIC_CPP__SIMPLE_SUB_HPP_

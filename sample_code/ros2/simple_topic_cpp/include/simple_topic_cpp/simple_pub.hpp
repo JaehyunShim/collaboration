@@ -37,29 +37,13 @@ namespace simple_topic_cpp
 class SimplePub : public rclcpp::Node
 {
 public:
-  SimplePub()
-  : Node("simple_pub")
-  {
-    pub_ = this->create_publisher<std_msgs::msg::String>("chatter", 10);
-
-    timer_ = this->create_wall_timer(
-      std::chrono::seconds(1),
-      std::bind(&SimplePub::timer_callback, this));
-  }
+  SimplePub();
 
 private:
   rclcpp::Publisher<std_msgs::msg::String>::SharedPtr pub_;
 
   rclcpp::TimerBase::SharedPtr timer_;
-
-  void timer_callback()
-  {
-    auto msg = std_msgs::msg::String();
-    msg.data = "Hello world from Korea!";
-    RCLCPP_INFO(this->get_logger(), "Publishing message");
-    RCLCPP_INFO(this->get_logger(), "Data: %s", msg.data.c_str());
-    pub_->publish(msg);
-  }
+  void timer_callback();
 };
 }  // namespace simple_topic_cpp
 #endif  // SIMPLE_TOPIC_CPP__SIMPLE_PUB_HPP_

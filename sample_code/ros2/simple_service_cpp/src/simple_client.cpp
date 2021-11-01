@@ -26,22 +26,36 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef SIMPLE_TOPIC_CPP__SIMPLE_SUB_HPP_
-#define SIMPLE_TOPIC_CPP__SIMPLE_SUB_HPP_
+#include "simple_service_cpp/simple_client.hpp"
 
-#include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/string.hpp"
-
-namespace simple_topic_cpp
+namespace simple_service_cpp
 {
-class SimpleSub : public rclcpp::Node
+SimpleClient::SimpleClient() : Node("simple_client")
 {
-public:
-  SimpleSub();
+  client_ = this->create_client<std_srvs::srv::SetBool>("robot_switch");
 
-private:
-  rclcpp::Subscription<std_msgs::msg::String>::SharedPtr sub_;
-  void sub_callback(const std_msgs::msg::String::SharedPtr msg);
-};
-}  // namespace simple_topic_cpp
-#endif  // SIMPLE_TOPIC_CPP__SIMPLE_SUB_HPP_
+  while (!client_->wait_for_service(std::chrono::seconds(1))) {
+    if (!rclcpp::ok()) {
+      RCLCPP_ERROR(this->get_logger(), "Interruped while waiting for the server.");
+      return;
+    }
+    RCLCPP_INFO(this->get_logger(), "Server not available, waiting again...");
+  }
+
+  using std::placeholders::_1;
+  auto request = std::make_shared<std_srvs::srv::SetBool::Request>();
+  request->data = false;
+  RCLCPP_INFO(this->get_logger(), "Sending request");
+  RCLCPP_INFO(this->get_logger(), "Onoff: %s", request->data ? "true" : "false");
+  client_->async_send_request(
+    request, std::bind(&SimpleClient::client_response_callback, this, _1));
+}
+
+void SimpleClient::client_response_callback(ServiceResponseFuture future)
+{
+  auto response = future.get();
+  RCLCPP_INFO(this->get_logger(), "Received response");
+  RCLCPP_INFO(this->get_logger(), "Success: %s", response->success ? "true" : "false");
+  RCLCPP_INFO(this->get_logger(), "Message: %s", response->message.c_str());
+}
+}  // namespace /* namespace_name */

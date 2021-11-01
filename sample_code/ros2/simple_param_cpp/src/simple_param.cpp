@@ -26,22 +26,29 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef SIMPLE_TOPIC_CPP__SIMPLE_SUB_HPP_
-#define SIMPLE_TOPIC_CPP__SIMPLE_SUB_HPP_
+#include "simple_param_cpp/simple_param.hpp"
 
-#include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/string.hpp"
-
-namespace simple_topic_cpp
+namespace simple_param_cpp
 {
-class SimpleSub : public rclcpp::Node
+SimpleParam::SimpleParam() : Node("simple_param")
 {
-public:
-  SimpleSub();
+  this->declare_parameter<std::string>("robot_name", "SimpleBot");
+  this->declare_parameter<double>("robot_mass", 1.0);
+  this->declare_parameter<int>("robot_number", 3);
 
-private:
-  rclcpp::Subscription<std_msgs::msg::String>::SharedPtr sub_;
-  void sub_callback(const std_msgs::msg::String::SharedPtr msg);
-};
-}  // namespace simple_topic_cpp
-#endif  // SIMPLE_TOPIC_CPP__SIMPLE_SUB_HPP_
+  timer_ = this->create_wall_timer(
+    std::chrono::seconds(1),
+    std::bind(&SimpleParam::timer_callback, this));
+}
+
+void SimpleParam::timer_callback()
+{
+  auto robot_name = this->get_parameter("robot_name").get_value<std::string>();
+  auto robot_mass = this->get_parameter("robot_mass").get_value<double>();
+  auto robot_number = this->get_parameter("robot_number").get_value<int>();
+
+  RCLCPP_INFO(this->get_logger(), "robot_name: %s", robot_name.c_str());
+  RCLCPP_INFO(this->get_logger(), "robot_mass: %lf", robot_mass);
+  RCLCPP_INFO(this->get_logger(), "robot_number: %d", robot_number);
+}
+}  // namespace simple_param_cpp

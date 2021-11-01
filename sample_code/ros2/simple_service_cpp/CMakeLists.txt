@@ -21,11 +21,11 @@ find_package(rclcpp REQUIRED)
 find_package(std_srvs REQUIRED)
 
 # Build
-add_executable(simple_server src/main_server.cpp)
+add_executable(simple_server src/simple_server.cpp src/main_server.cpp)
 target_include_directories(simple_server PRIVATE include)
 ament_target_dependencies(simple_server rclcpp std_srvs)
 
-add_executable(simple_client src/main_client.cpp)
+add_executable(simple_client src/simple_client.cpp src/main_client.cpp)
 target_include_directories(simple_client PRIVATE include)
 ament_target_dependencies(simple_client rclcpp std_srvs)
 

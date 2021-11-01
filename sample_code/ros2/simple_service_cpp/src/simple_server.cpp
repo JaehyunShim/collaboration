@@ -26,22 +26,25 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef SIMPLE_TOPIC_CPP__SIMPLE_SUB_HPP_
-#define SIMPLE_TOPIC_CPP__SIMPLE_SUB_HPP_
+#include "simple_service_cpp/simple_server.hpp"
 
-#include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/string.hpp"
-
-namespace simple_topic_cpp
+namespace simple_service_cpp
 {
-class SimpleSub : public rclcpp::Node
+SimpleServer::SimpleServer() : Node("simple_server")
 {
-public:
-  SimpleSub();
+  using std::placeholders::_1;
+  using std::placeholders::_2;
+  server_ = this->create_service<std_srvs::srv::SetBool>(
+    "robot_switch", std::bind(&SimpleServer::server_callback, this, _1, _2));
+}
 
-private:
-  rclcpp::Subscription<std_msgs::msg::String>::SharedPtr sub_;
-  void sub_callback(const std_msgs::msg::String::SharedPtr msg);
-};
-}  // namespace simple_topic_cpp
-#endif  // SIMPLE_TOPIC_CPP__SIMPLE_SUB_HPP_
+void SimpleServer::server_callback(
+  const std::shared_ptr<std_srvs::srv::SetBool::Request> request,
+  std::shared_ptr<std_srvs::srv::SetBool::Response> response)
+{
+  RCLCPP_INFO(this->get_logger(), "Received request");
+  RCLCPP_INFO(this->get_logger(), "Onoff: %s", request->data ? "true" : "false");
+  response->success = true;
+  response->message = request->data ? "Turned on" : "Turned off";
+}
+}  // namespace simple_service_cpp

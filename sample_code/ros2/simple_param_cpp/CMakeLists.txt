@@ -20,7 +20,7 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 
 # Build
-add_executable(simple_param src/main_param.cpp)
+add_executable(simple_param src/simple_param.cpp src/main_param.cpp)
 target_include_directories(simple_param PRIVATE include)
 ament_target_dependencies(simple_param rclcpp)
 
