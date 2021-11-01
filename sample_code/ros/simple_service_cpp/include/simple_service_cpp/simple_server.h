@@ -44,7 +44,8 @@ private:
   ros::NodeHandle priv_nh_;
 
   ros::ServiceServer server_;
-  bool server_callback(std_srvs::SetBool::Request& request, std_srvs::SetBool::Response& response);
+  bool server_callback(std_srvs::SetBool::Request & request,
+                       std_srvs::SetBool::Response & response);
 };
 }  // namespace simple_service_cpp
 #endif  // SIMPLE_SERVICE_CPP__SIMPLE_SERVER_H_

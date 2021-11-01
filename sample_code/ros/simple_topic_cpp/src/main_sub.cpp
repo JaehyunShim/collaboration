@@ -30,7 +30,7 @@
 
 #include "simple_topic_cpp/simple_sub.h"
 
-int main(int argc, char* argv[])
+int main(int argc, char * argv[])
 {
   ros::init(argc, argv, "simple_sub");
   auto simple_sub = simple_topic_cpp::SimpleSub();

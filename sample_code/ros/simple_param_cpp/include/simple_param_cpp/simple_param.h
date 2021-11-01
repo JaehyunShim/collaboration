@@ -43,7 +43,7 @@ private:
   ros::NodeHandle priv_nh_;
 
   ros::Timer timer_;
-  void timer_callback(const ros::TimerEvent& event);
+  void timer_callback(const ros::TimerEvent & event);
 };
 }  // namespace simple_param_cpp
 #endif  // SIMPLE_PARAM_CPP__SIMPLE_PARAM_H_

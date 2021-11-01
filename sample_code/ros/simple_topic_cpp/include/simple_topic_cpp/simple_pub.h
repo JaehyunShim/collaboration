@@ -45,7 +45,7 @@ private:
 
   ros::Publisher pub_;
   ros::Timer timer_;
-  void timer_callback(const ros::TimerEvent& event);
+  void timer_callback(const ros::TimerEvent & event);
 };
 }  // namespace simple_topic_cpp
 #endif  // SIMPLE_TOPIC_CPP__SIMPLE_PUB_H_

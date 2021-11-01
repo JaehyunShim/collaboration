@@ -30,7 +30,7 @@
 
 #include "simple_topic_cpp/simple_pub.h"
 
-int main(int argc, char* argv[])
+int main(int argc, char * argv[])
 {
   ros::init(argc, argv, "sipmle_pub");
   auto sipmle_pub = simple_topic_cpp::SimplePub();

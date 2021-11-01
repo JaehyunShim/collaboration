@@ -32,7 +32,7 @@ Use the below template to provide users with minimal yet necessary information a
 ```
 
 ## .clang-format
-Add this [.clang-format]() file from the [ROS Control](https://github.com/ros-controls/ros_controllers/blob/noetic-devel/.clang-format) group to your repository to meet style guidelines used in the ROS community.
+Add this [sample_code/ros/.clang-format]() file from the [ROS Control](https://github.com/ros-controls/ros_controllers/blob/noetic-devel/.clang-format) group to your repository to meet style guidelines used in the ROS community.
 
 ## .gitignore
 Add this [.gitignore](.gitignore) file from [Exotica](https://github.com/ipab-slmc/exotica/blob/master/.gitignore) to your repository to exclude unncessary files (e.g., cache files) in your repository.

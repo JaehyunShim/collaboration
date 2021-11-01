@@ -35,9 +35,8 @@ SimpleServer::SimpleServer() : nh_(""), priv_nh_("~")
   server_ = nh_.advertiseService("robot_switch", &SimpleServer::server_callback, this);
 }
 
-bool SimpleServer::server_callback(
-  std_srvs::SetBool::Request& request,
-  std_srvs::SetBool::Response& response)
+bool SimpleServer::server_callback(std_srvs::SetBool::Request & request,
+                                   std_srvs::SetBool::Response & response)
 {
   ROS_INFO("Received request");
   ROS_INFO("Onoff: %s", request.data ? "true" : "false");

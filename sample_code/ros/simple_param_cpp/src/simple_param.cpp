@@ -35,7 +35,7 @@ SimpleParam::SimpleParam() : nh_(""), priv_nh_("~")
   timer_ = nh_.createTimer(ros::Duration(1.0), &SimpleParam::timer_callback, this);
 }
 
-void SimpleParam::timer_callback(const ros::TimerEvent& event)
+void SimpleParam::timer_callback(const ros::TimerEvent & event)
 {
   auto robot_name = priv_nh_.param<std::string>("robot_name", "SimpleBot");
   auto robot_mass = priv_nh_.param<double>("robot_mass", 1.0);

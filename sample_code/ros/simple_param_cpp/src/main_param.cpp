@@ -30,7 +30,7 @@
 
 #include "simple_param_cpp/simple_param.h"
 
-int main(int argc, char* argv[])
+int main(int argc, char * argv[])
 {
   ros::init(argc, argv, "simple_param");
   auto simple_param = simple_param_cpp::SimpleParam();

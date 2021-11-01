@@ -37,7 +37,7 @@ SimplePub::SimplePub() : nh_(""), priv_nh_("~")
   timer_ = nh_.createTimer(ros::Duration(1.0), &SimplePub::timer_callback, this);
 }
 
-void SimplePub::timer_callback(const ros::TimerEvent& event)
+void SimplePub::timer_callback(const ros::TimerEvent & event)
 {
   auto msg = std_msgs::String();
   msg.data = "Hello world from Korea!";

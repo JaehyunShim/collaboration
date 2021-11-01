@@ -30,7 +30,7 @@
 
 #include "simple_service_cpp/simple_client.h"
 
-int main(int argc, char* argv[])
+int main(int argc, char * argv[])
 {
   ros::init(argc, argv, "simple_client");
   auto simple_client = simple_service_cpp::SimpleClient();
