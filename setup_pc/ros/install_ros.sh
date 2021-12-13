@@ -9,7 +9,7 @@ sudo apt -y update
 # Install ROS
 sudo apt install -y ros-noetic-desktop-full
 source /opt/ros/noetic/setup.bash
-sudo apt install -y python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential python-catkin-tools
+sudo apt install -y python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential python3-catkin-tools
 
 # Init & Update Rosdep
 sudo -S rosdep init

@@ -22,6 +22,7 @@ code --install-extension ms-azuretools.vscode-docker
 ## ROS
 code --install-extension JaehyunShim.vscode-ros
 code --install-extension JaehyunShim.vscode-ros2
+code --install-extension betwo.b2-catkin-tools
 
 ## Clean Code
 code --install-extension shardulm94.trailing-spaces

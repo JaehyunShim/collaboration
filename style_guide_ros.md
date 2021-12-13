@@ -6,40 +6,81 @@
 - Utilize ROS extensions for fast and efficient development
 
 ## Package Structure
+- ROS
 ```
-catkin_ws (colcon_ws in ROS2)
+catkin_ws
   - devel
-  - build (install in ROS2)
-  - logs (log in ROS2)
+  - build
+  - logs
   - src
-      - package_name
+      - package_name (if cpp)
           - config
               - controller.yaml
             launch
-              - controller.launch (controller.launch.xml or controller.launch.py in ROS2)
+              - controller.launch
           - urdf
               - robot.urdf
           - include/package_name
-              - controller.h (controller.hpp in ROS2)
+              - controller.h
           - src
               - controller.cpp
-          - scripts/package_name
-              - controller.py
+              - main.cpp
           - test
               - controller_test.cpp
           - CMakeLists.txt
           - package.xml
-          - setup.py (only if python package)
+      - package_name2 (if python)
+          - scripts/package_name
+              - controller.py
+              - main.py
+          - CMakeLists.txt
+          - package.xml
+          - setup.py
 ```
 
-TODO: ROS2
+- ROS2
+```
+colcon_ws
+  - devel
+  - install
+  - log
+  - src
+      - package_name (if cpp)
+          - config
+              - controller.yaml
+            launch
+              - controller.launch.xml
+              - controller.launch.py
+          - urdf
+              - robot.urdf
+          - include/package_name
+              - controller.hpp
+          - src
+              - controller.cpp
+              - main.cpp
+          - test
+              - controller_test.cpp
+          - CMakeLists.txt
+          - package.xml
+      - package_name2 (if python)
+          - resource
+              - package_name2
+          - package_name2
+              - __init__.py
+              - controller.py
+              - main.py
+          - test
+              - test_copyright.py
+              - test_flake8.py
+              - test_pep257.py
+          - package.xml
+          - setup.cfg
+          - setup.py
+```
 
 ## Sample Code
-- [ROS](https://github.com/JaehyunShim/collaboration/tree/master/sample_code/ros)
-- [ROS2](https://github.com/JaehyunShim/collaboration/tree/master/sample_code/ros2)
-
-TODO: Write cpp files for the sample code
-TODO: Apply linter
+- [ROS](https://github.com/ipab-slmc/collaboration/tree/master/sample_code/ros)
+- [ROS2](https://github.com/ipab-slmc/collaboration/tree/master/sample_code/ros2)
 
 ## VSCode Extension
 **Utilize ROS extensions** to write clean ROS code effectively.

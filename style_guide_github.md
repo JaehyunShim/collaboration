@@ -17,9 +17,10 @@
   - Documentation
   - Doxygen
   - Code Coverage
+  - Release
 
 ## README.md
-Use the below template to provide users with minimal yet necessary information about your code. Refer to [Exotica README.md](https://github.com/ipab-slmc/exotica#readme)
+Use the below template to provide users with minimal yet necessary information about your code. Refer to [Exotica README.md](https://github.com/ipab-slmc/exotica#readme) for more information.
 ```
 # Repository Name
 
@@ -32,13 +33,13 @@ Use the below template to provide users with minimal yet necessary information a
 ```
 
 ## .clang-format
-Add this [sample_code/ros/.clang-format]() file from the [ROS Control](https://github.com/ros-controls/ros_controllers/blob/noetic-devel/.clang-format) group to your repository to meet style guidelines used in the ROS community.
+Add this [.clang-format](sample_code/ros/.clang-format) file from the [ROS Control](https://github.com/ros-controls/ros_controllers/blob/noetic-devel/.clang-format) group to your repository to meet style guidelines used in the ROS community.
 
 ## .gitignore
 Add this [.gitignore](.gitignore) file from [Exotica](https://github.com/ipab-slmc/exotica/blob/master/.gitignore) to your repository to exclude unncessary files (e.g., cache files) in your repository.
 
 ## dependency.repos
-VCStool??? with repos file will be used for dependencies that are not binary-released yet.
+[vcstool](http://wiki.ros.org/vcstool) with `.repos` extension files will be used for maintaining dependencies that are not binary-released yet.
 ```
 # To create a repos file
 $ cd ~/catkin_ws  # colcon_ws in ROS2
@@ -46,18 +47,23 @@ $ vcs export src
 
 # To download dependency repositories using a repos file
 $ cd ~/catkin_ws  # colcon_ws in ROS2
-$ wget -O dependency.repos https://raw.githubusercontent.com/JaehyunShim/collaboration/master/dependency.repos?token=AJGY62OPJ63S7NZLBJT5KVTBP72XG
+$ wget -O dependency.repos https://raw.githubusercontent.com/ipab-slmc/collaboration/master/dependency.repos?token=AJGY62NRSIVF27RD7CLJKUTBRFIHW
 $ vcs import src < dependency.repos
 
-# To install the rest of dependencies using rosdep
+# To install the rest of binary dependencies using rosdep
 $ rosdep install --from-paths src --ignore-src --rosdistro noetic -r -y  # for ROS Noetic
 ```
 
 ## LICENSE
 Add this [3-clause BSD license](LICENSE) to your repository unless you have requirement to use others for your code. For more infomation, read [Licenses & Standards](https://opensource.org/licenses) by Open Source Initiative.
 
+---------------------------------------
+---------------------------------------
+---------------------------------------
+<font size="5">**Below sections for open-source repositories will be updated soon**</font>
+
 ## workflows
-TODO
+TODO: Continuous Integration
 
 ## CHANGELOG.rst
 Add `CHANGELOG.rst` file to track changes in your code. Refer to the sample [CHANGELOG.rst](CHANGELOG.rst) provided in this repository.
@@ -79,3 +85,6 @@ TODO
 
 ## Code Coverage
 TODO
+
+## Release
+TODO: Bloom

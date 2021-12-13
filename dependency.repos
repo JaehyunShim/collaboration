@@ -1,0 +1,5 @@
+repositories:
+  nextagea:
+    type: git
+    url: https://github.com/ipab-slmc/nextagea.git
+    version: master

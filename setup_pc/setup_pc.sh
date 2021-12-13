@@ -24,5 +24,8 @@ cp ros2/c_cpp_properties.json ~/colcon_ws/.vscode/c_cpp_properties.json
 #cp config/ROS2/launch.json ~/colcon_ws/.vscode/launch.json
 #cp config/ROS2/tasks.json ~/colcon_ws/.vscode/tasks.json
 
-sleep 3
+echo '-------------------------------'
+echo 'PC will reboot in five seconds.'
+echo '-------------------------------'
+sleep 5
 reboot
